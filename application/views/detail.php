@@ -80,9 +80,7 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item cta cta-colored"><a href="<?= base_url('cart') ?>" id="cart_count" class="nav-link"><span class="icon-shopping_cart"></span>[<?php if ($this->session->userdata('logged_in') == TRUE) {
-                                                                                                                                                                            echo $count;
-                                                                                                                                                                        } ?>]</a></li>
+                    <li class="nav-item cta cta-colored"><a href="<?= base_url('cart') ?>" id="cart_count" class="nav-link"><span class="icon-shopping_cart"></span>[<?= $count ?>]</a></li>
                     <?php if ($this->session->userdata('logged_in') == TRUE && $this->session->userdata('role') === '2') { ?>
                         <li class="nav-item active dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img alt="image" src="<?php echo base_url('assets/img/avatar/') . $admin['img'] ?>" class="rounded-circle justify-content-center align-items-center" width="25"> <?= $this->session->userdata('name') ?></a>

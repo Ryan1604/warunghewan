@@ -186,7 +186,11 @@ class ProdukController extends CI_Controller
 		$id_auth       			 	= $this->session->userdata('id');
 		$data['admin']	        	= $this->db->get_where('auth', ['id_auth' => $this->session->userdata('id')])->row_array();
 
-		$data['count'] 				= $this->db->query("SELECT * FROM cart WHERE id_auth = $id_auth")->num_rows();
+		if ($this->session->userdata('logged_in === TRUE')) {
+			$data['count'] 			= $this->db->query("SELECT * FROM cart WHERE id_auth = $id_auth")->num_rows();
+		} else {
+			$data['count']			= 0;
+		}
 
 		$data['produk']	 			= $this->db->query("SELECT * FROM satuan INNER JOIN produk ON satuan.id_satuan = produk.id_satuan INNER JOIN category ON produk.id_category = category.id_category WHERE id_produk = $id")->result();
 
