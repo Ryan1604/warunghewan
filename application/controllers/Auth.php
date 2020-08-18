@@ -16,6 +16,8 @@ class Auth extends CI_Controller
 	{
 		if ($this->session->userdata('role') === '1') {
 			redirect('admin/dashboard');
+		} elseif ($this->session->userdata('role') === '2') {
+			redirect('login');
 		} else {
 			$data = array(
 				'title' => "Login"

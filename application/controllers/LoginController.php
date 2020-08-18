@@ -7,11 +7,16 @@ class LoginController extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if ($this->session->userdata('logged_in' !== TRUE) && $this->session->userdata('rule' == '1')) {
+			redirect('/');
+		}
 	}
 
 	public function index()
 	{
 		if ($this->session->userdata('role') === '2') {
+			redirect('/');
+		} elseif ($this->session->userdata('role') === '1') {
 			redirect('/');
 		} else {
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -60,6 +65,8 @@ class LoginController extends CI_Controller
 	public function register()
 	{
 		if ($this->session->userdata('role') === '2') {
+			redirect('/');
+		} elseif ($this->session->userdata('role') === '1') {
 			redirect('/');
 		} else {
 			$this->form_validation->set_rules('name', 'Name', 'required|trim');
