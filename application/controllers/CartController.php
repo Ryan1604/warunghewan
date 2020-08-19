@@ -186,11 +186,11 @@ class CartController extends CI_Controller
             $data['total']          = $this->db->query("SELECT sum(subtotal) as total FROM cart")->result();
 
             $id_auth                = $this->session->userdata('id');
-            if ($id_auth !== NULL) {
-                $data['cart']           = $this->db->query("SELECT * FROM cart INNER JOIN produk ON cart.id_produk = produk.id_produk INNER JOIN satuan ON produk.id_satuan = satuan.id_satuan WHERE id_auth = $id_auth")->result();
-                $data['count']          = $this->db->query("SELECT * FROM cart WHERE id_auth = $id_auth")->num_rows();
-            } else {
+            if ($id_auth == '') {
                 $data['count']          = '0';
+            } else {
+                $data['count']          = $this->db->query("SELECT * FROM cart WHERE id_auth = $id_auth")->num_rows();
+                $data['cart']           = $this->db->query("SELECT * FROM cart INNER JOIN produk ON cart.id_produk = produk.id_produk INNER JOIN satuan ON produk.id_satuan = satuan.id_satuan WHERE id_auth = $id_auth")->result();
             }
 
             $this->load->view('cart', $data);

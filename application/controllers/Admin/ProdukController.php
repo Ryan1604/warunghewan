@@ -186,7 +186,7 @@ class ProdukController extends CI_Controller
 		$id_auth       			 	= $this->session->userdata('id');
 		$data['admin']	        	= $this->db->get_where('auth', ['id_auth' => $this->session->userdata('id')])->row_array();
 
-		if ($this->session->userdata('logged_in === TRUE')) {
+		if ($id_auth) {
 			$data['count'] 			= $this->db->query("SELECT * FROM cart WHERE id_auth = $id_auth")->num_rows();
 		} else {
 			$data['count']			= 0;
